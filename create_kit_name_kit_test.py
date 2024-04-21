@@ -13,8 +13,13 @@ def get_kit_body(name):
     return current_body
 
 
-def test_valid():
-    token = get_new_user_token()
-    kit_body = get_kit_body("AbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdAbcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcD")
-    res = sender_stand_request.post_new_client_kit(token, kit_body)
-    assert res.status_code == 201
+def positive_assert(name):
+    kit_body = get_kit_body(name)
+    authToken = get_new_user_token()
+    kit_response = sender_stand_request.post_new_client_kit(kit_body, authToken)
+    assert kit_response.status_code == 201
+    assert kit_body.json()["name"] == name
+
+
+def test_create_kit_1_letter():
+    positive_assert("a")
