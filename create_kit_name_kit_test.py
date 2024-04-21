@@ -54,7 +54,7 @@ def test_create_kit_rus_letters():
 
 
 def test_create_kit_spec_symbols():
-    positive_assert(""%",")
+    positive_assert(""%@",")
 
 
 def test_create_kit_space():
