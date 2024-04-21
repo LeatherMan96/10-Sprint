@@ -52,3 +52,22 @@ def test_create_kit_eng_letters():
 
 def test_create_kit_rus_letters():
     positive_assert("Мария")
+
+
+def test_create_kit_spec_symbols():
+    positive_assert(""%@",")
+
+
+def test_create_kit_space():
+    positive_assert("Человек и КО")
+
+
+def test_create_kit_nums():
+    positive_assert("123")
+
+
+def test_create_kit_empty():
+    negative_assert(data.kit_body.pop("name"))
+
+
+
