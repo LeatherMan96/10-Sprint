@@ -18,7 +18,7 @@ def positive_assert(name):
     authToken = get_new_user_token()
     kit_response = sender_stand_request.post_new_client_kit(kit_body, authToken)
     assert kit_response.status_code == 201
-    assert kit_response.json()["name"] == {'name': name}
+    assert kit_response.json()["name"] == name
 
 
 def negative_assert(kit_body):
@@ -54,7 +54,7 @@ def test_create_kit_rus_letters():
 
 
 def test_create_kit_spec_symbols():
-    positive_assert(""%@",")
+    positive_assert(""%",")
 
 
 def test_create_kit_space():
