@@ -21,8 +21,7 @@ def positive_assert(name):
     assert kit_response.json()["name"] == {'name': name}
 
 
-def negative_assert(name):
-    kit_body = get_kit_body(name)
+def negative_assert(kit_body):
     authToken = get_new_user_token()
     kit_response = sender_stand_request.post_new_client_kit(kit_body, authToken)
     assert kit_response.status_code == 400
@@ -67,8 +66,13 @@ def test_create_kit_nums():
 
 
 def test_create_kit_empty():
-    negative_assert(data.kit_body.pop("name"))
+    kit_body = data.kit_body.copy()
+    kit_body.pop("name")
+    negative_assert(kit_body)
 
+
+def test_create_kit_other_type():
+    negative_assert(123)
 
 
 

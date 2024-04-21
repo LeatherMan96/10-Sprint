@@ -10,9 +10,6 @@ def post_new_user():
 
 def post_new_client_kit(kit_body, authToken):
     url = configuration.URL_SERVICE + configuration.KITS_PATH
-    body = {
-        "name": kit_body
-    }
     new_headers = data.headers.copy()
     new_headers['Authorization'] = f'Bearer {authToken}'
     return requests.post(url, json=body, headers=new_headers)
